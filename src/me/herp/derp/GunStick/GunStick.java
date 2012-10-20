@@ -58,6 +58,14 @@ public class GunStick extends JavaPlugin implements Listener {
 	            		break;
 	            	}
 	            }
+	            for (String s :Array.list)
+	            {
+	            	if (s.equals(p.getName()))
+	            	{
+	            		hasAmmo = true;
+	            		break;
+	            	}
+	            }
 	            if (hasAmmo || p.isOp())
 	            {
 	            	if (!p.isOp())
