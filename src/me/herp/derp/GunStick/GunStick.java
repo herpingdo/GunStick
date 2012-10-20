@@ -24,27 +24,6 @@ public class GunStick extends JavaPlugin implements Listener {
 	{
 		getServer().getPluginManager().registerEvents(this, this);
 	}
-	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
-	{
-		Player player = (Player) sender;
-		if (args[0].equalsIgnoreCase("add"))
-		{
-			Array.putList(args[1]);
-		}
-		if (args[0].equalsIgnoreCase("remove"))
-		{
-			Array.removelist(args[1]);
-		}
-		if (args[0].equalsIgnoreCase("list"))
-		{
-			player.sendMessage("The following players have unlimited ammo:");
-			for (String s :Array.list)
-			{
-				player.sendMessage(s);
-			}
-		}
-		return false;
-	}
 	public void fireball(Player player)
 	{
 		CraftPlayer craftPlayer = (CraftPlayer) player;
@@ -82,13 +61,10 @@ public class GunStick extends JavaPlugin implements Listener {
 	            		break;
 	            	}
 	            }
-	            for (String s :Array.list)
+	            //Infinite ammo, better way.
+	            if (p.hasPermission("gunstick.infinite"))
 	            {
-	            	if (s.equals(p.getName()))
-	            	{
-	            		hasAmmo = true;
-	            		break;
-	            	}
+	            	hasAmmo = true;
 	            }
 	            if (hasAmmo || p.isOp())
 	            {
