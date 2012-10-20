@@ -1,0 +1,6 @@
+name: GunStick
+version: 1.0
+description: This causes guns to act like sticks?
+author: herpingdo
+
+main: me.herp.derp.GunStick.GunStick
