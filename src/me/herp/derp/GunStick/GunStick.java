@@ -5,6 +5,8 @@ import net.minecraft.server.EntityLiving;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -17,9 +19,31 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 public class GunStick extends JavaPlugin implements Listener {
+	@Override
 	public void onEnable() 
 	{
 		getServer().getPluginManager().registerEvents(this, this);
+	}
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+	{
+		Player player = (Player) sender;
+		if (args[0].equalsIgnoreCase("add"))
+		{
+			Array.putList(args[1]);
+		}
+		if (args[0].equalsIgnoreCase("remove"))
+		{
+			Array.removelist(args[1]);
+		}
+		if (args[0].equalsIgnoreCase("list"))
+		{
+			player.sendMessage("The following players have unlimited ammo:");
+			for (String s :Array.list)
+			{
+				player.sendMessage(s);
+			}
+		}
+		return false;
 	}
 	public void fireball(Player player)
 	{
