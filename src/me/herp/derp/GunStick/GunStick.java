@@ -70,12 +70,12 @@ public class GunStick extends JavaPlugin implements Listener {
 	            {
 	            	if (!p.isOp())
 	            	{
-	            	p.getInventory().removeItem(new ItemStack(Material.SULPHUR, 1));
-	            	p.getInventory().setContents(p.getInventory().getContents());
-	            	p.updateInventory();
+	            		p.getInventory().removeItem(new ItemStack(Material.SULPHUR, 1));
+	            		p.getInventory().setContents(p.getInventory().getContents());
+	            		p.updateInventory();
 	            	}
-						fireball(p);
-						hasAmmo = false;
+					fireball(p);
+					hasAmmo = false;
 	            }
 			else
 			{
