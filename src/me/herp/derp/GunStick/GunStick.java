@@ -39,44 +39,42 @@ public class GunStick extends JavaPlugin implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e)
-    {
+    	{
 		Material material = e.getMaterial();
 		if(material == Material.STICK)
 		{
-		boolean hasAmmo = false;
-		if (e.getAction() == Action.RIGHT_CLICK_AIR || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) //So it does not shoot when you "hit"
-		{
-			Player p = e.getPlayer();
-			if (p.hasPermission("gunstick.shoot") || p.isOp())
+			boolean hasAmmo = false;
+			if (e.getAction() == Action.RIGHT_CLICK_AIR || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) //So it does not shoot when you "hit"
 			{
-				Integer normInvSize = p.getInventory().getSize();
-	            Integer i = 0;
-	            for (i=0; i<normInvSize; i++) 
-	            {
-	            	ItemStack item = p.getInventory().getItem(i);
-	            	//p.sendMessage(item.toString());
-	            	if (item.toString().toLowerCase().contains("sulphur"))
-	            	{
-	            		hasAmmo = true;
-	            		break;
-	            	}
-	            }
-	            //Infinite ammo, better way.
-	            if (p.hasPermission("gunstick.infinite"))
-	            {
-	            	hasAmmo = true;
-	            }
-	            if (hasAmmo || p.isOp())
-	            {
-	            	if (!p.isOp())
-	            	{
-	            		p.getInventory().removeItem(new ItemStack(Material.SULPHUR, 1));
-	            		p.getInventory().setContents(p.getInventory().getContents());
-	            		p.updateInventory();
-	            	}
-					fireball(p);
-					hasAmmo = false;
-	            }
+				Player p = e.getPlayer();
+				if (p.hasPermission("gunstick.shoot") || p.isOp())
+				{
+					Integer normInvSize = p.getInventory().getSize();
+	         		        Integer i = 0;
+	           			for (i=0; i<normInvSize; i++) 
+	        		        {
+	            				ItemStack item = p.getInventory().getItem(i);
+	            				if (item.toString().toLowerCase().contains("sulphur"))
+	            				{
+	            					hasAmmo = true;
+	            					break;
+	            				}
+	           			 }
+	           			 if (p.hasPermission("gunstick.infinite"))
+	           			 {
+	            				hasAmmo = true;
+			         	 }
+	           			 if (hasAmmo || p.isOp())
+			            	{
+	            				if (!p.isOp())
+			            		{
+			            			p.getInventory().removeItem(new ItemStack(Material.SULPHUR, 1));
+	            					p.getInventory().setContents(p.getInventory().getContents());
+	            					p.updateInventory();
+	            				}
+						fireball(p);
+						hasAmmo = false;
+	           			 }
 			else
 			{
 				p.sendMessage("You may not shoot guns!");
